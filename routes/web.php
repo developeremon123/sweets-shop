@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\Testimonial;
+use App\Http\Controllers\Backend\TestimonialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +33,7 @@ Route::prefix('/admin')->as('admin.')->group(function(){
     });
     /*Resource Controller*/ 
     Route::resource('/category',CategoryController::class);
+    Route::resource('/testimonial',TestimonialController::class);
     /* restore category route*/
     Route::get('/category/{category}/restore',[CategoryController::class,'restore'])->name('category.restore');
     Route::get('/category/{category}/perDelete',[CategoryController::class,'delete'])->name('category.perDelete');
