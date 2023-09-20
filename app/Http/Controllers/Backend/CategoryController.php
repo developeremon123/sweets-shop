@@ -6,9 +6,10 @@ use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
+use Intervention\Image\Facades\Image;
 use App\Http\Requests\CategoryStoreRequest;
 use App\Http\Requests\CategoryUpdateRequest;
-use Brian2694\Toastr\Facades\Toastr;
 
 class CategoryController extends Controller
 {
@@ -17,8 +18,13 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::latest('id')->select(['id','title','slug'])->paginate();
-        $delcategories = Category::onlyTrashed()->latest('id')->select(['id','title','slug'])->paginate();
+        $categories = Category::latest('id')
+        ->select(['id','title','slug','category_image','updated_at'])
+        ->paginate();
+        $delcategories = Category::onlyTrashed()
+        ->latest('id')
+        ->select(['id','title','slug','category_image','updated_at'])
+        ->paginate();
         return view('backend.pages.auth.category.index',compact('categories','delcategories'));
     }
 
@@ -35,12 +41,14 @@ class CategoryController extends Controller
      */
     public function store(CategoryStoreRequest $request)
     {
-        $create = Category::create([
+        $category = Category::create([
             'title' => $request->title,
             'slug' => Str::slug($request->title)
         ]);
 
-        if ($create) {
+        $this->image($request, $category->id);
+
+        if ($category) {
             Toastr::success("New Category Store successfully");
             return redirect()->route('admin.category.index');
         }else {
@@ -79,8 +87,10 @@ class CategoryController extends Controller
             'is_active' => $request->filled('is_active')
         ]);
 
+        $this->image($request, $category->id);
+
         if ($category) {
-            Toastr::success("Category store successfully");
+            Toastr::success("Category updated successfully");
             return redirect()->route('admin.category.index');
         }else {
             Toastr::error("Something went wrong!!");
@@ -119,6 +129,10 @@ class CategoryController extends Controller
     public function delete($slug)
     {
         $delcategories = Category::onlyTrashed()->whereSlug($slug)->first();
+        if($delcategories->category_image){
+            $location = 'upload/category/'.$delcategories->category_image;
+            unlink($location);
+        }
     
         if ($delcategories) {
             $delcategories->forceDelete();
@@ -128,6 +142,28 @@ class CategoryController extends Controller
         }
     
         return back();
+    }
+
+    public function image($request,$id)
+    {
+        $category = Category::findOrFail($id);
+        if ($request->hasFile('category_image')) {
+            if ($category->category_image != 'default-image.jpeg') {
+                $location = 'public/upload/category/';
+                $old_location = $location.$category->category_image;
+                unlink(base_path($old_location));
+            }
+            $image_location = 'public/upload/category/';
+            $upload_image = $request->file('category_image');
+            $new_image_name = $category->id.'.'.$upload_image->getClientOriginalExtension();
+            $new_photo_location = $image_location.$new_image_name;
+            Image::make($upload_image)->resize(105,105)->save(base_path($new_photo_location),40);
+
+            $check = $category->update([
+                'category_image' => $new_image_name
+            ]);
+
+        }
     }
     
 }

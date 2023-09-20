@@ -23,6 +23,8 @@
             <thead>
                 <tr>
                     <th>#</th>
+                    <th>Category Image</th>
+                    <th>Last Modified</th>
                     <th>Category Name</th>
                     <th>Category Slug</th>
                     <th>Options</th>
@@ -32,6 +34,8 @@
                 @foreach ($categories as $key => $category)
                     <tr>
                         <td>{{ $key+1 }}</td>
+                        <td><img src="{{ asset('upload/category') }}/{{ $category->category_image }}" alt="" class="img-fluid rounded h-20 w-20"></td>
+                        <td>{{ $category->updated_at->format('d M Y') }}</td>
                         <td>{{ $category->title }}</td>
                         <td>{{ $category->slug }}</td>
                         <td>
@@ -66,7 +70,9 @@
             <thead>
                 <tr>
                     <th>#</th>
+                    <th>Category Image</th>
                     <th>Category Name</th>
+                    <th>Last Modified</th>
                     <th>Category Slug</th>
                     <th>Options</th>
                 </tr>
@@ -75,6 +81,8 @@
                 @foreach ($delcategories as $key => $category)
                     <tr>
                         <td>{{ $key+1 }}</td>
+                        <td><img src="{{ asset('upload/category') }}/{{ $category->category_image }}" alt=""class="img-fluid rounded h-30 w-30"></td>
+                        <td>{{ $category->updated_at->format('d M Y') }}</td>
                         <td>{{ $category->title }}</td>
                         <td>{{ $category->slug }}</td>
                         <td>
