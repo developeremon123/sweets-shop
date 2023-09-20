@@ -6,6 +6,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.28/dist/sweetalert2.min.css" integrity="sha256-VJuwjrIWHWsPSEvQV4DiPfnZi7axOaiWwKfXaJnR5tA=" crossorigin="anonymous">
+
+    <style>
+        img {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 2px;
+            width: 100px;
+        }
+    </style>
 @endpush
 
 @section('title','Testimonial-Index-Page')
@@ -35,7 +44,9 @@
                     <tr>
                         <td>{{ $testimonials->firstItem()+$loop->index }}</td>
                         <td>{{ $testimonial->updated_at->format('d M Y') }}</td>
-                        <td>{{ $testimonial->client_image }}</td>
+                        <td>
+                            <img src="{{ asset('upload/testimonial') }}/{{ $testimonial->client_image }}" class="img-fluid rounded-circle">
+                        </td>
                         <td>{{ $testimonial->client_name }}</td>
                         <td>{{ $testimonial->client_designation }}</td>
                         <td>

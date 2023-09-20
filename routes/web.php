@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\Testimonial;
 use App\Http\Controllers\Backend\TestimonialController;
+use App\Http\Controllers\Frontend\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,8 @@ use App\Http\Controllers\Backend\TestimonialController;
 Route::get('/', function () {
     return view('frontend.layouts.pages.home');
 });
+/* testimonial route*/ 
+Route::get('/', [HomeController::class,'home']);
 /*Admin Auth routes */
 Route::prefix('/admin')->as('admin.')->group(function(){
     Route::get('/login',[LoginController::class,'loginPage'])->name('loginPage');
