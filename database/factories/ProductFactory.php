@@ -29,8 +29,8 @@ class ProductFactory extends Factory
             'alert_quantity' => fake()->numberBetween(1,10),
             'short_description' => fake()->paragraph(3),
             'long_description' => fake()->paragraph(6),
-            'aditional_info' => fake()->paragraph(2),
-            'product_image' => 'https://picsum.photos/300',
+            'additional_info' => fake()->paragraph(2),
+            'product_image' => 'default-product.png',
             'product_rating' => fake()->numberBetween(0,5),
         ];
     }

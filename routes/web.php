@@ -1,12 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Backend\CategoryController;
-use App\Http\Controllers\Backend\Testimonial;
-use App\Http\Controllers\Backend\TestimonialController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LoginController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Backend\TestimonialController;
+use App\Http\Controllers\Backend\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +37,11 @@ Route::prefix('/admin')->as('admin.')->group(function(){
     /*Resource Controller*/ 
     Route::resource('/category',CategoryController::class);
     Route::resource('/testimonial',TestimonialController::class);
+    Route::resource('/product',ProductController::class);
     /* restore category route*/
     Route::get('/category/{category}/restore',[CategoryController::class,'restore'])->name('category.restore');
     Route::get('/category/{category}/perDelete',[CategoryController::class,'delete'])->name('category.perDelete');
+    /* restore product route*/
+    Route::get('/product/{product}/restore',[ProductController::class,'restore'])->name('product.restore');
+    Route::get('/product/{product}/proDelete',[ProductController::class,'delete'])->name('product.proDelete');
 }) ;

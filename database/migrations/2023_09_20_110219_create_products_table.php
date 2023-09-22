@@ -22,9 +22,10 @@ return new class extends Migration
             $table->unsignedInteger('alert_quantity')->default(1);
             $table->longText('short_description')->nullable();
             $table->longText('long_description')->nullable();
-            $table->longText('aditional_info')->nullable();
-            $table->string('product_image')->nullable()->default('default-product.jpg');
+            $table->longText('additional_info')->nullable();
+            $table->string('product_image')->nullable()->default('default-product.png');
             $table->unsignedSmallInteger('product_rating')->nullable()->default(0);
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
             $table->softDeletes();
         });
