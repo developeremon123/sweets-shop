@@ -77,75 +77,9 @@
                                                     class="fa-solid fa-pen-to-square"></i>Edit</a></li>
                                         <li>
                                             <form action="{{ route('admin.product.destroy', $product->slug) }}"
-                                                method="post">
+                                                method="post" id="deleteForm">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button class="dropdown-item "><i
-                                                        class="fa-solid fa-trash"></i>Delete</button>
-                                            </form>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <h4>Trash List</h4>
-        </div>
-        <div class="col-12 my-2">
-            <table class="table table-striped table-bordered" id="dataTable">
-                <thead>
-                    <tr>
-                        <th scope="row">#</th>
-                        <th scope="row">Image</th>
-                        <th scope="row">Last Modified</th>
-                        <th scope="row">Category Name</th>
-                        <th scope="row">Name</th>
-                        <th scope="row">Slug</th>
-                        <th scope="row">Price</th>
-                        <th scope="row">Stock/Alert</th>
-                        <th scope="row">Rating</th>
-                        <th scope="row">Options</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($delproducts as $product)
-                        <tr>
-                            <th>{{ $delproducts->firstItem() + $loop->index }}</th>
-                            <td>
-                                <img src="{{ asset('upload/product') }}/{{ $product->product_image }}"
-                                    class="img-fluid rounded-circle h-20 w-20">
-                            </td>
-                            <td>{{ $product->updated_at->format('d M Y') }}</td>
-                            <td>{{ $product->category->title }}</td>
-                            <td>{{ $product->name }}</td>
-                            <td>{{ $product->slug }}</td>
-                            <td>{{ $product->product_price }}</td>
-                            <td>
-                                <span class="badge bg-success">{{ $product->product_stock }}</span>/
-                                <span class="badge bg-danger">{{ $product->alert_quantity }}</span>
-                            </td>
-                            <td>{{ $product->product_rating }}</td>
-                            <td>
-                                <div class="dropdown">
-                                    <button class="btn btn-info dropdown-toggle" type="button"      data-bs-toggle="dropdown"
-                                        aria-expanded="false">
-                                        Settings
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item"
-                                                href="{{ route('admin.product.restore', $product->slug) }}"><i
-                                                    class="fa-solid fa-window-restore"></i>Restore</a>
-                                        </li>
-                                        <li>
-                                            <form action="{{ route('admin.product.proDelete', $product->slug) }}"
-                                                method="" id="deleteForm">
-                                                @csrf
                                                 <button class="dropdown-item delete_confirm"><i
                                                         class="fa-solid fa-trash"></i>Delete</button>
                                             </form>
@@ -159,6 +93,7 @@
             </table>
         </div>
     </div>
+
 
 @endsection
 

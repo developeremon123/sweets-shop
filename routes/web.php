@@ -41,7 +41,5 @@ Route::prefix('/admin')->as('admin.')->group(function(){
     /* restore category route*/
     Route::get('/category/{category}/restore',[CategoryController::class,'restore'])->name('category.restore');
     Route::get('/category/{category}/perDelete',[CategoryController::class,'delete'])->name('category.perDelete');
-    /* restore product route*/
-    Route::get('/product/{product}/restore',[ProductController::class,'restore'])->name('product.restore');
-    Route::get('/product/{product}/proDelete',[ProductController::class,'delete'])->name('product.proDelete');
+    
 }) ;

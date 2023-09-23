@@ -27,7 +27,7 @@ return new class extends Migration
             $table->unsignedSmallInteger('product_rating')->nullable()->default(0);
             $table->boolean('is_active')->default(true);
             $table->timestamps();
-            $table->softDeletes();
+            
         });
     }
 

@@ -73,6 +73,16 @@
                         </span>
                     @enderror
                 </div>
+                <div class="form-group col-12">
+                    <label for="product_multiple_image">Product Multiple image</label>
+                    <input type="file" multiple name="product_multiple_image[]"
+                        class="form-control @error('product_multiple_image') is-invalid @enderror">
+                    @error('product_multiple_image')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
                 <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" role="switch" checked
                         name="is_active" @if ($products->is_active) checked @endif>
