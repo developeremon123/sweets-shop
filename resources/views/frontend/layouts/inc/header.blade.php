@@ -46,7 +46,7 @@
                                 <ul class="dropdown_style">
                                     <li><a href="{{ route('shop.page') }}">Shop Page</a></li>
                                     {{-- <li><a href="single-product.html">Product Details</a></li> --}}
-                                    <li><a href="cart.html">Shopping cart</a></li>
+                                    <li><a href="{{ route('cart.page') }}">Shopping cart</a></li>
                                     <li><a href="checkout.html">Checkout</a></li>
                                     <li><a href="wishlist.html">Wishlist</a></li>
                                 </ul>
@@ -56,7 +56,7 @@
                                 <ul class="dropdown_style">
                                     <li><a href="about.html">About Page</a></li>
                                     <li><a href="single-product.html">Product Details</a></li>
-                                    <li><a href="cart.html">Shopping cart</a></li>
+                                    <li><a href="{{ route('cart.page') }}">Shopping cart</a></li>
                                     <li><a href="checkout.html">Checkout</a></li>
                                     <li><a href="wishlist.html">Wishlist</a></li>
                                     <li><a href="faq.html">FAQ</a></li>
@@ -84,7 +84,7 @@
                                         <img src="{{ asset('assets/frontend/images/cart/1.jpg') }}" alt="">
                                     </div>
                                     <div class="cart-content">
-                                        <a href="cart.html">Pure Nature Product</a>
+                                        <a href="{{ route('cart.page') }}">Pure Nature Product</a>
                                         <span>QTY : 1</span>
                                         <p>$35.00</p>
                                         <i class="fa fa-times"></i>
@@ -95,7 +95,7 @@
                                         <img src="{{ asset('assets/frontend/images/cart/3.jpg') }}" alt="">
                                     </div>
                                     <div class="cart-content">
-                                        <a href="cart.html">Pure Nature Product</a>
+                                        <a href="{{ route('cart.page') }}">Pure Nature Product</a>
                                         <span>QTY : 1</span>
                                         <p>$35.00</p>
                                         <i class="fa fa-times"></i>
@@ -115,7 +115,7 @@
                                         <img src="{{ asset('assets/frontend/images/cart/1.jpg') }}" alt="">
                                     </div>
                                     <div class="cart-content">
-                                        <a href="cart.html">Pure Nature Product</a>
+                                        <a href="{{ route('cart.page') }}">Pure Nature Product</a>
                                         <span>QTY : 1</span>
                                         <p>$35.00</p>
                                         <i class="fa fa-times"></i>
@@ -126,7 +126,7 @@
                                         <img src="{{ asset('assets/frontend/images/cart/3.jpg') }}" alt="">
                                     </div>
                                     <div class="cart-content">
-                                        <a href="cart.html">Pure Nature Product</a>
+                                        <a href="{{ route('cart.page') }}">Pure Nature Product</a>
                                         <span>QTY : 1</span>
                                         <p>$35.00</p>
                                         <i class="fa fa-times"></i>
@@ -137,7 +137,7 @@
                                         <img src="{{ asset('assets/frontend/images/cart/2.jpg') }}" alt="">
                                     </div>
                                     <div class="cart-content">
-                                        <a href="cart.html">Pure Nature Product</a>
+                                        <a href="{{ route('cart.page') }}">Pure Nature Product</a>
                                         <span>QTY : 1</span>
                                         <p>$35.00</p>
                                         <i class="fa fa-times"></i>
@@ -168,14 +168,14 @@
                 <div class="row">
                     <div class="col-12 d-block d-lg-none">
                         <ul class="metismenu">
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="{{ route('home') }}">Home</a></li>
                             <li><a href="about.html">About</a></li>
                             <li class="sidemenu-items">
                                 <a class="has-arrow" aria-expanded="false" href="javascript:void(0);">Shop </a>
                                 <ul aria-expanded="false">
-                                    <li><a href="shop.html">Shop Page</a></li>
+                                    <li><a href="{{ route('shop.page') }}">Shop Page</a></li>
                                     <li><a href="single-product.html">Product Details</a></li>
-                                    <li><a href="cart.html">Shopping cart</a></li>
+                                    <li><a href="{{ route('cart.page') }}">Shopping cart</a></li>
                                     <li><a href="checkout.html">Checkout</a></li>
                                     <li><a href="wishlist.html">Wishlist</a></li>
                                 </ul>
@@ -185,7 +185,7 @@
                                 <ul aria-expanded="false">
                                   <li><a href="about.html">About Page</a></li>
                                   <li><a href="single-product.html">Product Details</a></li>
-                                  <li><a href="cart.html">Shopping cart</a></li>
+                                  <li><a href="{{ route('cart.page') }}">Shopping cart</a></li>
                                   <li><a href="checkout.html">Checkout</a></li>
                                   <li><a href="wishlist.html">Wishlist</a></li>
                                   <li><a href="faq.html">FAQ</a></li>
