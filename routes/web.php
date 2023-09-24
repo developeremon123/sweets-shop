@@ -20,11 +20,13 @@ use App\Http\Controllers\Backend\ProductController;
 */
 
 
-Route::get('/', function () {
-    return view('frontend.layouts.pages.home');
-});
-/* testimonial route*/ 
-Route::get('/', [HomeController::class,'home']);
+// Route::get('/', function () {
+//     return view('frontend.layouts.pages.home');
+// });
+
+Route::get('/', [HomeController::class,'home'])->name('home');
+Route::get('/shop', [HomeController::class,'shopPage'])->name('shop.page');
+Route::get('/single-product/{product_slug}', [HomeController::class,'productDetails'])->name('productdetail.page');
 /*Admin Auth routes */
 Route::prefix('/admin')->as('admin.')->group(function(){
     Route::get('/login',[LoginController::class,'loginPage'])->name('loginPage');
