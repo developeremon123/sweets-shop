@@ -2,6 +2,7 @@
     <!-- Place favicon.ico in the root directory -->
     <!-- all css here -->
     <!-- bootstrap v4.0.0-beta.2 css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/bootstrap.min.css') }}">
     <!-- owl.carousel.2.0.0-beta.2.4 css -->
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/owl.carousel.min.css') }}">

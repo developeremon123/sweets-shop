@@ -128,9 +128,9 @@
             </a>
         </li>
         <li>
-            <a href="Discount.html">
+            <a href="{{ route('admin.cupon.index') }}">
                 <i data-cs-icon="tag" class="icon" data-cs-size="18"></i>
-                <span class="label">Discount</span>
+                <span class="label">Cupon Discount</span>
             </a>
         </li>
         <li>

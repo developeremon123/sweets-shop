@@ -22,5 +22,7 @@
 <script src="{{ asset('assets/frontend/js/mailchimp.js') }}"></script>
 <!-- jquery-ui.min.js -->
 <script src="{{ asset('assets/frontend/js/jquery-ui.min.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+{!! Toastr::message() !!}
 <!-- main js -->
 <script src="{{ asset('assets/frontend/js/scripts.js') }}"></script>
