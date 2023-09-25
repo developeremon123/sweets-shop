@@ -39,9 +39,9 @@ Route::get('/remove-from-cart/{cart_id}', [CartController::class,'remove_cart'])
 Route::prefix('/admin')->as('admin.')->group(function(){
     Route::get('/login',[LoginController::class,'loginPage'])->name('loginPage');
     Route::post('/login',[LoginController::class,'login'])->name('login');
-    Route::get('/logout',[LoginController::class,'logout'])->name('logout');
-
-    Route::middleware('auth')->group(function(){
+    
+    Route::middleware(['auth','is_admin'])->group(function(){
+        Route::get('/logout',[LoginController::class,'logout'])->name('logout');
         Route::get('/dashboard',[DashboardController::class,'dashboard'])->name('dashboard');
     });
     /*Resource Controller*/ 
@@ -64,7 +64,7 @@ Route::post('/register',[RegisterController::class,'register'])->name('resigter.
 Route::get('/login',[CustomerLoginController::class,'loginPage'])->name('login.Page');
 Route::post('/login',[CustomerLoginController::class,'login'])->name('login.store');
 
-Route::prefix('/customer')->middleware('auth')->as('customer.')->group(function(){
+Route::prefix('/customer')->middleware(['auth','is_customer'])->as('customer.')->group(function(){
     Route::get('/dashboard',[CustomerController::class, 'dashboard'])->name('dashboard');
     Route::get('/logout',[CustomerLoginController::class, 'logout'])->name('logout');
 });
