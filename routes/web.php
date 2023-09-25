@@ -9,6 +9,9 @@ use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\TestimonialController;
+use App\Http\Controllers\Frontend\Auth\CustomerLoginController;
+use App\Http\Controllers\Frontend\Auth\RegisterController;
+use App\Http\Controllers\Frontend\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,3 +57,14 @@ Route::prefix('/admin')->as('admin.')->group(function(){
     Route::get('/cupon/{cupon}/delete',[CuponController::class,'delete'])->name('cupon.delete');
     
 }) ;
+
+/*Authentication routes for customer/guest */
+Route::get('/register',[RegisterController::class,'resigterPage'])->name('resigter.Page');
+Route::post('/register',[RegisterController::class,'register'])->name('resigter.store');
+Route::get('/login',[CustomerLoginController::class,'loginPage'])->name('login.Page');
+Route::post('/login',[CustomerLoginController::class,'login'])->name('login.store');
+
+Route::prefix('/customer')->middleware('auth')->as('customer.')->group(function(){
+    Route::get('/dashboard',[CustomerController::class, 'dashboard'])->name('dashboard');
+    Route::get('/logout',[CustomerLoginController::class, 'logout'])->name('logout');
+});
