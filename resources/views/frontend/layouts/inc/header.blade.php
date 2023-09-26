@@ -11,17 +11,24 @@
                 <div class="col-md-6 col-12">
                     <ul class="d-flex account_login-area">
                         <li>
-                            <a href="javascript:void(0);"><i class="fa fa-user"></i> My Account <i class="fa fa-angle-down"></i></a>
-                            <ul class="dropdown_style">
-                                <li><a href="{{ route('login.Page') }}">Login</a></li>
-                                <li><a href="{{ route('resigter.Page') }}">Register</a></li>
-                                <li><a href="{{ route('cart.page') }}">Cart</a></li>
-                                <li><a href="checkout.html">Checkout</a></li>
-                                <li><a href="wishlist.html">wishlist</a></li>
-                                <li><a href="{{ route('customer.logout') }}">Logout</a></li>
+                            @auth
+                                <a href="javascript:void(0);"><i class="fa fa-user"></i> My Account <i
+                                        class="fa fa-angle-down"></i></a>
+                                <ul class="dropdown_style">
+                                    <li><a href="{{ route('cart.page') }}">Cart</a></li>
+                                    <li><a href="checkout.html">Checkout</a></li>
+                                    <li><a href="wishlist.html">wishlist</a></li>
+                                    <li><a href="{{ route('customer.logout') }}">Logout</a></li>
+                                @endauth
+                                @guest
+                                    <li><a href="{{ route('login.Page') }}">Login</a></li>
+                                    <li><a href="{{ route('resigter.Page') }}">Register</a></li>
+                                @endguest
                             </ul>
                         </li>
-                        <li><a href="{{ route('login.Page') }}"> Login/Register </a></li>
+                        @guest
+                            <li><a href="{{ route('login.Page') }}"> Login/Register </a></li>
+                        @endguest
                     </ul>
                 </div>
             </div>
@@ -32,9 +39,9 @@
             <div class="row">
                 <div class="col-lg-3 col-md-7 col-sm-6 col-6">
                     <div class="logo">
-                        <a href="index.html">
-                    <img src="{{ asset('assets/frontend/images/logo.png') }}" alt="">
-                    </a>
+                        <a href="{{ route('home') }}">
+                            <img src="{{ asset('assets/frontend/images/logo.png') }}" alt="">
+                        </a>
                     </div>
                 </div>
                 <div class="col-lg-7 d-none d-lg-block">
@@ -114,18 +121,20 @@
                                 $subtotal = \Gloudemans\Shoppingcart\Facades\Cart::subtotal();
                                 $count = \Gloudemans\Shoppingcart\Facades\Cart::count();
                             @endphp
-                            <a href="javascript:void(0);"><i class="flaticon-shop"></i> <span>{{ $count }}</span></a>
+                            <a href="javascript:void(0);"><i class="flaticon-shop"></i>
+                                <span>{{ $count }}</span></a>
                             <ul class="cart-wrap dropdown_style">
                                 @foreach ($carts as $item)
                                     <li class="cart-items">
                                         <div class="cart-img">
-                                            <img src="{{ asset('upload/product') }}/{{ $item->options->product_image }}" style="width:60px;">
+                                            <img src="{{ asset('upload/product') }}/{{ $item->options->product_image }}"
+                                                style="width:60px;">
                                         </div>
                                         <div class="cart-content">
                                             <a href="{{ route('cart.page') }}">{{ $item->name }}</a>
                                             <span>QTY : {{ $item->qty }}</span>
-                                            <p>${{ $item->qty*$item->price }}</p>
-                                            <a href="{{ route('remove.cart',['cart_id' => $item->rowId]) }}">
+                                            <p>${{ $item->qty * $item->price }}</p>
+                                            <a href="{{ route('remove.cart', ['cart_id' => $item->rowId]) }}">
                                                 <i class="fa fa-times"></i>
                                             </a>
                                         </div>
@@ -142,10 +151,10 @@
                 <div class="col-md-1 col-sm-1 col-2 d-block d-lg-none">
                     <div class="responsive-menu-tigger">
                         <a href="javascript:void(0);">
-                    <span class="first"></span>
-                    <span class="second"></span>
-                    <span class="third"></span>
-                    </a>
+                            <span class="first"></span>
+                            <span class="second"></span>
+                            <span class="third"></span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -162,7 +171,6 @@
                                 <a class="has-arrow" aria-expanded="false" href="javascript:void(0);">Shop </a>
                                 <ul aria-expanded="false">
                                     <li><a href="{{ route('shop.page') }}">Shop Page</a></li>
-                                    <li><a href="single-product.html">Product Details</a></li>
                                     <li><a href="{{ route('cart.page') }}">Shopping cart</a></li>
                                     <li><a href="checkout.html">Checkout</a></li>
                                     <li><a href="wishlist.html">Wishlist</a></li>
@@ -171,12 +179,11 @@
                             <li class="sidemenu-items">
                                 <a class="has-arrow" aria-expanded="false" href="javascript:void(0);">Pages </a>
                                 <ul aria-expanded="false">
-                                  <li><a href="about.html">About Page</a></li>
-                                  <li><a href="single-product.html">Product Details</a></li>
-                                  <li><a href="{{ route('cart.page') }}">Shopping cart</a></li>
-                                  <li><a href="checkout.html">Checkout</a></li>
-                                  <li><a href="wishlist.html">Wishlist</a></li>
-                                  <li><a href="faq.html">FAQ</a></li>
+                                    <li><a href="about.html">About Page</a></li>
+                                    <li><a href="{{ route('cart.page') }}">Shopping cart</a></li>
+                                    <li><a href="checkout.html">Checkout</a></li>
+                                    <li><a href="wishlist.html">Wishlist</a></li>
+                                    <li><a href="faq.html">FAQ</a></li>
                                 </ul>
                             </li>
                             <li class="sidemenu-items">

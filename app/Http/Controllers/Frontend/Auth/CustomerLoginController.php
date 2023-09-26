@@ -15,7 +15,7 @@ class CustomerLoginController extends Controller
     public function login(Request $request){
         $request->validate([
             'email' => 'required|email',
-            'password' => 'required|string|max:4',
+            'password' => 'required|string|min:4',
         ]);
 
         $credentials = [

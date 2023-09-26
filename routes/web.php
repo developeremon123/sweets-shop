@@ -67,4 +67,6 @@ Route::post('/login',[CustomerLoginController::class,'login'])->name('login.stor
 Route::prefix('/customer')->middleware(['auth','is_customer'])->as('customer.')->group(function(){
     Route::get('/dashboard',[CustomerController::class, 'dashboard'])->name('dashboard');
     Route::get('/logout',[CustomerLoginController::class, 'logout'])->name('logout');
+    Route::post('/cart/apply-cupon',[CartController::class, 'cuponApply'])->name('cuponApply');
+    Route::get('/cart/remove-cupon/{cupon_name}',[CartController::class, 'removeCupon'])->name('removeCupon');
 });

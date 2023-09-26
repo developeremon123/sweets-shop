@@ -52,17 +52,30 @@
                                     <h3>Cupon</h3>
                                     <p>Enter Your Cupon Code if You Have One</p>
                                     <div class="cupon-wrap">
-                                        <input type="text" placeholder="Cupon Code">
-                                        <button>Apply Cupon</button>
+                                        <form action="{{ route('customer.cuponApply') }}" method="post">
+                                            <input type="text" placeholder="Cupon Code" name="cuponName">
+                                            <button type="submit">Apply Cupon</button>
+                                        </form> 
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 offset-xl-5 col-lg-4 offset-lg-3 col-md-6">
                                 <div class="cart-total text-right">
                                     <h3>Cart Totals</h3>
+                                    <p>
+                                        @if (Session::has('cupon'))
+                                            <a href="{{ route('customer.removeCupon','cuponName') }}" class="p-1"><i class="fa fa-times"></i></a>
+                                            <b>{{ Session::get('cupon')['cuponName'] }} is Applied</b>
+                                        @endif
+                                    </p>
                                     <ul>
-                                        <li><span class="pull-left">Subtotal </span>${{ $subtotal }}</li>
-                                        <li><span class="pull-left"> Total </span> ${{ $subtotal }}</li>
+                                        @if (Session::has('cupon'))
+                                            <li><span class="pull-left">Discount :</span>ট{{ Session::get('cupon')['discount_amount'] }}</li>
+                                            <li><span class="pull-left">Total :</span>ট{{ Session::get('cupon')['balance'] }} <del class="text-danger">ট{{ Session::get('cupon')['cart_total'] }}</del></li>
+                                        @else
+                                        <li><span class="pull-left">Discount :</span>ট{{ $total_price }}</li>
+                                        <li><span class="pull-left">Total :</span>ট{{ $total_price }}</li>
+                                        @endif
                                     </ul>
                                     <a href="checkout.html">Proceed to Checkout</a>
                                 </div>
