@@ -10,8 +10,8 @@
                 </div>
                 <div class="col-md-6 col-12">
                     <ul class="d-flex account_login-area">
-                        <li>
-                            @auth
+                        @auth
+                            <li>
                                 <a href="javascript:void(0);"><i class="fa fa-user"></i> My Account <i
                                         class="fa fa-angle-down"></i></a>
                                 <ul class="dropdown_style">
@@ -19,16 +19,15 @@
                                     <li><a href="checkout.html">Checkout</a></li>
                                     <li><a href="wishlist.html">wishlist</a></li>
                                     <li><a href="{{ route('customer.logout') }}">Logout</a></li>
-                                @endauth
-                                @guest
-                                    <li><a href="{{ route('login.Page') }}">Login</a></li>
-                                    <li><a href="{{ route('resigter.Page') }}">Register</a></li>
-                                @endguest
-                            </ul>
-                        </li>
-                        @guest
+                                </ul>  
+                            </li>
                             <li><a href="{{ route('login.Page') }}"> Login/Register </a></li>
+                        @endauth
+                        @guest
+                            <li><a href="{{ route('login.Page') }}">Login</a></li>
+                            <li><a href="{{ route('resigter.Page') }}">Register</a></li>
                         @endguest
+
                     </ul>
                 </div>
             </div>

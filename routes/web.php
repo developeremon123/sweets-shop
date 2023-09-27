@@ -68,5 +68,5 @@ Route::prefix('/customer')->middleware(['auth','is_customer'])->as('customer.')-
     Route::get('/dashboard',[CustomerController::class, 'dashboard'])->name('dashboard');
     Route::get('/logout',[CustomerLoginController::class, 'logout'])->name('logout');
     Route::post('/cart/apply-cupon',[CartController::class, 'cuponApply'])->name('cuponApply');
-    Route::get('/cart/remove-cupon/{cupon_name}',[CartController::class, 'removeCupon'])->name('removeCupon');
+    Route::get('/cart/remove-cupon/{cuponName}',[CartController::class, 'removeCupon'])->name('removeCupon');
 });
