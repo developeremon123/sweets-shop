@@ -82,7 +82,7 @@
                                         <li><span class="pull-left">Total :</span>ট{{ $subtotal }}</li>
                                     @endif
                                 </ul>
-                                <a href="checkout.html">Proceed to Checkout</a>
+                                <a href="{{ route('customer.checkout') }}">Proceed to Checkout</a>
                             </div>
                         </div>
                     </div>

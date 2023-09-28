@@ -26,3 +26,5 @@
 {!! Toastr::message() !!}
 <!-- main js -->
 <script src="{{ asset('assets/frontend/js/scripts.js') }}"></script>
+
+@stack('front_script')
