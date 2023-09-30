@@ -9,22 +9,24 @@ use App\Models\Upazila;
 use App\Models\District;
 use App\Models\OrderDetails;
 use Illuminate\Http\Request;
+use App\Mail\PurchaseConfirm;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\OrderPlaceStoreRequest;
 use App\Http\Requests\OrderRequest;
-use App\Http\Requests\OrderStoreRequest;
+use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\OrderStoreRequest;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use App\Http\Requests\OrderPlaceStoreRequest;
 
 class CheckoutController extends Controller
 {
     public function checkoutPage()
     {
         $carts = Cart::content();
-        $total_price = (int)Cart::subtotal();
+        $total_price = (float)Cart::subtotal();
         $districts = District::select(['id', 'name', 'bn_name'])->get();
         return view('frontend.layouts.pages.checkout', compact('carts', 'total_price', 'districts'));
     }
@@ -58,9 +60,10 @@ class CheckoutController extends Controller
             'sub_total' => Session::get('cupon')['cart_total'] ?? $cartSubtotal,
             'discount_amount' => Session::get('cupon')['discount_amount'] ?? 0,
             'cuponName' => Session::get('cupon')['cuponName'] ?? '',
-            'total' => Session::get('cupon')['balance'] ?? $cartSubtotal,
+            'total' => Session::get('cupon')['balance'] ?? (float)$cartSubtotal,
         ]);
 
+        
         foreach (Cart::content() as $value) {
             OrderDetails::create([
                 'order_id' => $order->id,
@@ -74,6 +77,11 @@ class CheckoutController extends Controller
 
         Cart::destroy();
         Session::forget('cupon');
+
+        $order = Order::whereId($order->id)->with(['billing','orderdetails'])->get();
+
+        Mail::to($request->email)->send(new PurchaseConfirm($order));
+
         Toastr::success('Your ordered place successfully!!','Success');
         return redirect()->route('cart.page');
     }

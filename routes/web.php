@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Order;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
@@ -8,12 +9,12 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\CategoryController;
-use App\Http\Controllers\Backend\TestimonialController;
-use App\Http\Controllers\Frontend\Auth\CustomerLoginController;
-use App\Http\Controllers\Frontend\Auth\RegisterController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\CustomerController;
+use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\Frontend\PlaceorderController;
+use App\Http\Controllers\Frontend\Auth\RegisterController;
+use App\Http\Controllers\Frontend\Auth\CustomerLoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +74,12 @@ Route::prefix('/customer')->middleware(['auth','is_customer'])->as('customer.')-
     Route::get('/cart/remove-cupon/{cuponName}',[CartController::class, 'removeCupon'])->name('removeCupon');
     Route::get('/checkout',[CheckoutController::class,'checkoutPage'])->name('checkout');
     Route::post('/place-order',[CheckoutController::class, 'PlaceOrder'])->name('OrderPlace');
+    Route::get('email', function(){
+        $order = Order::whereId(1)->with(['billing', 'orderdetails'])->get();
+        return view('emails.purchaseconfirm', [
+            'order_details' => $order
+        ]);
+    });
 
 });
 /*AJAX*/

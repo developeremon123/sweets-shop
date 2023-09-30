@@ -54,7 +54,7 @@
                                     <select id="district_id" name="district_id" class="form-select js-example-basic-single">
                                         <option value="0">Select a district</option>
                                         @foreach ($districts as $district)
-                                            <option value="{{ $district->id }}">{{ $district->name }}</option>
+                                            <option value="{{ $district->id }}">{{ $district->bn_name }}</option>
                                         @endforeach
                                     </select>
                                 </div>

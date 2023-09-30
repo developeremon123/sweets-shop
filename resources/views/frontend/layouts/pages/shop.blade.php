@@ -46,7 +46,8 @@
                                     <h3><a
                                             href="{{ route('productdetail.page', $product->slug) }}">{{ $product->name }}</a>
                                     </h3>
-                                    <p class="pull-left">${{ $product->product_price }}
+                                    <p class="pull-left">ট
+                                        {{ $product->product_price }}
 
                                     </p>
                                     <ul class="pull-right d-flex">
@@ -88,7 +89,7 @@
                                         <h3><a
                                                 href="{{ route('productdetail.page', $cproduct->slug) }}">{{ $cproduct->name }}</a>
                                         </h3>
-                                        <p class="pull-left">${{ $cproduct->product_price }}
+                                        <p class="pull-left">ট {{ $cproduct->product_price }}
 
                                         </p>
                                         <ul class="pull-right d-flex">
