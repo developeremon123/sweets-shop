@@ -13,6 +13,7 @@ use App\Http\Controllers\Frontend\Auth\CustomerLoginController;
 use App\Http\Controllers\Frontend\Auth\RegisterController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\CustomerController;
+use App\Http\Controllers\Frontend\PlaceorderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,7 +72,8 @@ Route::prefix('/customer')->middleware(['auth','is_customer'])->as('customer.')-
     Route::post('/cart/apply-cupon',[CartController::class, 'cuponApply'])->name('cuponApply');
     Route::get('/cart/remove-cupon/{cuponName}',[CartController::class, 'removeCupon'])->name('removeCupon');
     Route::get('/checkout',[CheckoutController::class,'checkoutPage'])->name('checkout');
-    Route::post('/placeoder',[CheckoutController::class,'placeOrder'])->name('placeOrder');
+    Route::post('/place-order',[CheckoutController::class, 'PlaceOrder'])->name('OrderPlace');
+
 });
 /*AJAX*/
 Route::get('/upazila/ajax/{district_id}',[CheckoutController::class,'loadUpazilaAjax'])->name('loadupazila.ajax');

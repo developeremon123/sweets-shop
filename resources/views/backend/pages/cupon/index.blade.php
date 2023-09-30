@@ -90,7 +90,7 @@
                 <tbody>
                     @foreach ($delcupons as $cupon)
                         <tr>
-                            <th>{{ $cupons->firstItem() + $loop->index }}</th>
+                            <th>{{ $delcupons->firstItem() + $loop->index }}</th>
                             <td>{{ $cupon->updated_at->format('d M Y') }}</td>
                             <td>{{ $cupon->cuponName }}</td>
                             <td>{{ $cupon->discount_amount }}</td>

@@ -81,7 +81,7 @@ class CartController extends Controller
         }
 
         // Check if $check->discount_amount is numeric before using it in calculations
-        $discountAmount = (int)$check->discount_amount;
+        $discountAmount = (float)$check->discount_amount;
         if (!is_numeric($discountAmount)) {
             Toastr::error('Invalid Coupon Discount Amount!', 'Info!!');
             return redirect()->back();
@@ -90,7 +90,7 @@ class CartController extends Controller
         // Calculate discount and update session
         $cartSubtotal = Cart::subtotal(); 
         $cartSubtotal = str_replace(['$', ','], '', $cartSubtotal);
-        $cartSubtotal = (int)$cartSubtotal;
+        $cartSubtotal = (float)$cartSubtotal;
         $discount = round(($cartSubtotal * $discountAmount) / 100);
         $balance = round($cartSubtotal - $discount);
 
